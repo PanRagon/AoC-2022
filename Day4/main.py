@@ -1,7 +1,7 @@
 from input import input
-#Part 1
 pairs = input.split()
 
+#Part 1
 subsets = 0
 
 for pair in pairs:
@@ -24,4 +24,5 @@ for pair in pairs:
     if(first_set.intersection(second_set)):
         intersections += 1
 
+#Solution Part 2
 print('Part two solution: ', intersections)
