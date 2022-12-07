@@ -26,15 +26,7 @@ class File:
     def __repr__(self):
         return self.name + ", size:" + str(self.size)
 
-def testing():
-    root = Dir()
-    a_folder = Dir("a")
-    root.add_child(a_folder)
-    a_folder.add_child(Dir("c"))
-    a_folder.add_child(File("d", 25))
-    root.add_child(Dir("b"))
-    
-    print(a_folder)
+
 
 root = Dir("root")
 def parse_input():
@@ -46,10 +38,14 @@ def parse_input():
         all = step.split()
         if(all[0] == "$"):
             if(all[1] == "cd"):
-                curr = all[2]
+                if(all[2] == ".."):
+                    curr = curr[:curr.rfind('_')]
+                else:
+                    curr = curr + '_' + all[2]
         elif(all[0] == "dir"):
-            locals()[all[1]] = Dir(all[1])
-            eval(curr).add_child(locals()[all[1]])
+            path = curr + '_' + all[1]
+            locals()[path] = Dir(all[1])
+            eval(curr).add_child(locals()[path])
         else:
             eval(curr).add_child(File(all[1], all[0]))
 
@@ -64,24 +60,46 @@ def add_folder_sizes(node):
     node.add_size(size)
     return size 
 
-
+#Shouldn't be handled with global variable
 total = 0
 
 def check_folder_size(node, max_size):
     global total
     size = node.size
-    print(size)
     for child in node.children:
         if(isinstance(child, Dir)):
             check_folder_size(child, max_size)
     if(size < max_size):
-        print('is small boy', size)
         total += size
-        print(total)
     return size
 
 
 parse_input()
 add_folder_sizes(root)
 check_folder_size(root, 100000)
+#Part 1 Solution
 print(total)
+
+
+#Part 2
+
+needed_space = root.size - (70000000 - 30000000)
+print(needed_space)
+
+match = 70000000
+
+#Shouldn't be handled with global variable
+def find_smallest_fit(node, needed_space):
+    global match
+    size = node.size
+    if(size >= needed_space and size < match):
+        match = size
+    for child in node.children:
+        if(isinstance(child, Dir)):
+            if(child.size >= needed_space):
+                return find_smallest_fit(child, needed_space)
+    return node
+
+#Part 2 Solution
+find_smallest_fit(root, needed_space)
+print(match)
