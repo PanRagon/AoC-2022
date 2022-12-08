@@ -64,12 +64,11 @@ def count_visible(grid):
                     count+=1
     return count
 
-p1_result = count_visible(grid)
 #Part 1 Solution
+p1_result = count_visible(grid)
 print('Part 1 Solution: ', p1_result)
 
 #Part 2
-
 def highest_scenic_score(grid):
     highest_score = 0
     for outer_idx, row in enumerate(grid):
@@ -83,17 +82,17 @@ def highest_scenic_score(grid):
                 above += 1
                 if(grid[i][inner_idx] >= tree):
                     break
-            #Check left
+            #Count left
             for i in range(inner_idx-1, -1, -1):
                 left += 1
                 if(grid[outer_idx][i] >= tree):
                     break
-            #Check right
+            #Count right
             for i in range(inner_idx + 1, len(row)):
                 right += 1   
                 if(grid[outer_idx][i] >= tree):
                     break
-            #Check below
+            #Count below
             for i in range(outer_idx + 1, len(grid)):
                 below += 1
                 if(grid[i][inner_idx] >= tree):
@@ -103,6 +102,6 @@ def highest_scenic_score(grid):
                 highest_score = score
     return highest_score
 
+#Part 2 Solution
 p2_result = highest_scenic_score(grid)
-
 print("Part 2 Solution: ", p2_result)
