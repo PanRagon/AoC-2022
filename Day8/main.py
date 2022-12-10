@@ -1,4 +1,5 @@
 from input import input
+from test import test_input
 
 
 #Init
