@@ -4,4 +4,6 @@ As requested by Eric, inputs are not stored in the repository, as these are rand
 
 This repository will remain public during the entire event, as I will not be competing in the leaderboard this year.
 
+As per the license provided, feel free to use any code in this repository however you want, with or without attribution, I don't care!
+
 By @PanRagon
