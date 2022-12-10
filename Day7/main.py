@@ -43,6 +43,7 @@ def parse_input():
                 else:
                     curr = curr + '_' + all[2]
         elif(all[0] == "dir"):
+            #Should be done with a traversal / tree walk, not by storing the name as a variable
             path = curr + '_' + all[1]
             locals()[path] = Dir(all[1])
             eval(curr).add_child(locals()[path])
