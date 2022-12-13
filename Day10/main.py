@@ -1,5 +1,6 @@
 import math
 from test import test_input
+
 from input import input
 
 #Setup

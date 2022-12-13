@@ -1,8 +1,9 @@
-from test import test_input
-from input import input
 import math
-from functools import reduce
 import operator
+from functools import reduce
+from test import test_input
+
+from input import input
 
 #Setup
 monkeys = input.split('\n\n')
@@ -85,6 +86,7 @@ print('Solution to part 1: ', most[0].inspections * most[1].inspections)
 monkey_list = []
 #Part 2:
 lcm = generate_monkeys()
+print(lcm)
 def play_rounds_with_worry(rounds):
     for i in range(rounds):
         for monkey in monkey_list:
