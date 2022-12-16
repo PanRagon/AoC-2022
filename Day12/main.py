@@ -19,12 +19,21 @@ def find_and_replace_grid(start_char, end_char, grid):
 
 def find_bfs_path(grid):
     start, end, grid = find_and_replace_grid('S', 'E', grid)
-    print(get_neighbors(start, grid))
+    queue = [(start, [])]
+
+    while len(queue) > 0:
+        node, path = queue.pop(0)
+        print(node)
+        print(end)
+        if node == end:
+            print(path)
+            return path
+        for neighbor in get_neighbors(node, grid):
+            queue.append((neighbor, path + [neighbor]))
 
 def get_neighbors(node, grid):
     x, y = node
     neighbors = []
-    print(compare_neighbor(grid[x][y], grid[x - 1][y]))
     if x > 0 and compare_neighbor(grid[x][y], grid[x - 1][y]):
         neighbors.append((x - 1, y))
     if x < len(grid) - 1 and compare_neighbor(grid[x][y], grid[x + 1][y]):
